@@ -1,0 +1,335 @@
+/* ============================================
+   智能任务管理系统 - 样式
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #4f6ef7;
+  --primary-dark: #3b5bf0;
+  --bg: #eef1f8;
+  --card-bg: #ffffff;
+  --text: #2b2f3a;
+  --text-light: #8a90a3;
+  --border: #e3e7f0;
+  --high: #e5484d;
+  --medium: #f5a623;
+  --low: #5b8def;
+  --radius: 12px;
+  --shadow: 0 6px 24px rgba(43, 47, 58, 0.08);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.container {
+  width: 100%;
+  max-width: 640px;
+}
+
+/* ---------- 头部 ---------- */
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.header .subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* ---------- 添加表单 ---------- */
+.add-form {
+  display: flex;
+  gap: 10px;
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.task-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.task-input:focus {
+  border-color: var(--primary);
+}
+
+.priority-select {
+  padding: 10px 8px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  outline: none;
+  cursor: pointer;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-add {
+  background: var(--primary);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.btn-add:hover {
+  background: var(--primary-dark);
+}
+
+/* ---------- 筛选栏 ---------- */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0 12px;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.task-count {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* ---------- 任务列表 ---------- */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card-bg);
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 完成状态圆圈 */
+.task-check {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.task-check:hover {
+  border-color: var(--primary);
+}
+
+.task-check.done {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.task-check.done::after {
+  content: "";
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+/* 任务主体 */
+.task-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-title {
+  font-size: 15px;
+  word-break: break-word;
+}
+
+/* 已完成任务加删除线 */
+.task-title.done {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+.task-meta {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* 优先级标签 */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.badge.high {
+  background: var(--high);
+}
+
+.badge.medium {
+  background: var(--medium);
+}
+
+.badge.low {
+  background: var(--low);
+}
+
+/* 完成/未完成切换按钮 */
+.btn-toggle {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--primary);
+  background: #fff;
+  color: var(--primary);
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.btn-toggle:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-toggle.done {
+  border-color: #b9c2d4;
+  color: #b9c2d4;
+}
+
+.btn-toggle.done:hover {
+  background: #b9c2d4;
+  color: #fff;
+}
+
+/* 删除按钮 */
+.btn-delete {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #c0392b;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: #fdecea;
+  border-color: #f5c6c2;
+}
+
+/* 空状态提示 */
+.empty-tip {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 14px;
+  padding: 48px 0;
+}
+
+/* ---------- 移动端适配 ---------- */
+@media (max-width: 520px) {
+  .add-form {
+    flex-wrap: wrap;
+  }
+
+  .task-input {
+    flex-basis: 100%;
+  }
+
+  .priority-select {
+    flex: 1;
+  }
+
+  .btn-add {
+    flex: 1;
+  }
+}

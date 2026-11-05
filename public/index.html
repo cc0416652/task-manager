@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能任务管理系统</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>智能任务管理系统</h1>
+      <p class="subtitle">添加、筛选并管理你的每日任务</p>
+    </header>
+
+    <!-- 添加任务：输入框 + 优先级下拉 -->
+    <form id="add-form" class="add-form" autocomplete="off">
+      <input
+        type="text"
+        id="task-input"
+        class="task-input"
+        placeholder="输入任务内容，按回车或点击添加"
+        maxlength="100"
+        required
+      />
+      <select id="priority-select" class="priority-select" aria-label="任务优先级">
+        <option value="high">高优先级</option>
+        <option value="medium" selected>中优先级</option>
+        <option value="low">低优先级</option>
+      </select>
+      <button type="submit" class="btn btn-add">添加任务</button>
+    </form>
+
+    <!-- 按优先级筛选 -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-priority="all">全部</button>
+      <button class="filter-btn" data-priority="高">高</button>
+      <button class="filter-btn" data-priority="中">中</button>
+      <button class="filter-btn" data-priority="低">低</button>
+      <span id="task-count" class="task-count"></span>
+    </div>
+
+    <!-- 任务列表 -->
+    <ul id="task-list" class="task-list"></ul>
+
+    <div id="empty-tip" class="empty-tip" hidden>暂无任务，先添加一个吧</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
