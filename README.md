@@ -24,8 +24,12 @@
 
 ```
 task-manager/
+├── app.js                # Express 应用主体（API 路由 + 静态资源）
+├── server.js             # 本地启动入口（app.listen，本地开发用）
+├── api/
+│   └── index.js          # Vercel Serverless 入口（导出 Express 应用）
+├── vercel.json           # Vercel 部署配置
 ├── package.json          # 项目依赖与启动脚本
-├── server.js             # Express 服务 + Supabase API 路由
 ├── .env.example          # 环境变量模板（复制为 .env 后填写）
 ├── .gitignore            # Git 忽略规则
 ├── sql/
@@ -102,6 +106,17 @@ npm run dev
 | completed | boolean（默认 false） | 是否完成 |
 | created_at | timestamptz（默认当前时间） | 创建时间 |
 
+## 部署到 Vercel
+
+1. 将代码推送到 GitHub 仓库
+2. 打开 [vercel.com](https://vercel.com) → Add New Project → 导入该 GitHub 仓库
+3. 在部署配置页展开 **Environment Variables**，添加两条：
+   - `NEXT_PUBLIC_SUPABASE_URL` = 你的 Supabase 项目地址
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` = 你的 publishable key
+4. 点击 **Deploy**，完成后访问分配的 `xxx.vercel.app` 域名即可
+
+说明：仓库中的 `api/index.js` 是 Vercel Serverless 入口，`vercel.json` 会把所有请求交给 Express 应用处理，静态页面与 API 行为与本地完全一致。
+
 ## 常见问题
 
 **Q：启动时报「缺少 Supabase 配置」？**
@@ -111,7 +126,7 @@ npm run dev
 多为 Supabase 的 URL 或 publishable key 填错，或 tasks 表尚未创建。按第 2、3 步核对。
 
 **Q：如何部署到线上？**
-个人学习项目推荐先本地跑通。部署可参考 Vercel / Render / Railway 的 Node.js 部署文档，将 `.env` 中的变量配置为平台环境变量即可（切勿把 `.env` 提交到 GitHub）。
+见上方「部署到 Vercel」一节。注意 `.env` 中的变量要在平台的环境变量设置中配置，切勿把 `.env` 提交到 GitHub。
 
 ## 许可证
 
