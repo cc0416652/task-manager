@@ -7,3 +7,5 @@ node_modules/
 # 日志与系统文件
 *.log
 .DS_Store
+.vercel
+.env*
